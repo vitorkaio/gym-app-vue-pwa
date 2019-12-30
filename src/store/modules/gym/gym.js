@@ -5,9 +5,9 @@ import actions from './actions';
 const gym = {
   namespaced: true,
   state: {
-    users: null,
-    usersLoad: false,
-    usersError: false,
+    user: null,
+    userLoad: false,
+    userError: false,
   },
   getters: getters,
   mutations: mutations,

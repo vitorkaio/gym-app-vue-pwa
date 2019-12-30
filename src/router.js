@@ -4,13 +4,13 @@ import Vue from 'vue';
 Vue.use(Router);
 
 // Faz o Lazy Loading do component.
-const Admin = () => import(/* webpackChunkName: "info" */'@/pages/Admin/Admin.vue');
+const Home = () => import(/* webpackChunkName: "info" */'@/pages/Home/Home.vue');
 // const Info = () => import(/* webpackChunkName: "info" */'./components/info/Info.vue');
 
 const routes = [
   {
     path: '/',
-    component: Admin
+    component: Home
   },
   /* {
     path: '/info',

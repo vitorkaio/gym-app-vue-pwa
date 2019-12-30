@@ -1,20 +1,19 @@
 import * as typeActions from './typeActions';
-import ApiGym from '@/services/apiGym/ApiGym';
+import * as ApiGym from '@/services/apiGym/ApiGym';
 
 /* eslint-disable */
 
 const actions = {
 
-  async [typeActions.USER_REQUEST](context) {
+  async [typeActions.USER_REQUEST](context, payload) {
     try {
       context.commit(typeActions.USER_REQUEST);
       // Acessa o store.
       // console.log(context.state.load);
-      const apiGym = await ApiGym;
-      const users = await apiGym.getClient().getUsers();
-      
-      if(users) {
-        context.commit(typeActions.USER_SUCCESS, users);
+      const user = await ApiGym.getUser(payload);
+      console.log(user);
+      if(user) {
+        context.commit(typeActions.USER_SUCCESS, user);
       }
       else {
         context.commit(typeActions.USER_ERROR);

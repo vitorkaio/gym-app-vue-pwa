@@ -1,5 +1,5 @@
 import styled from 'vue-styled-components';
-import { text_color } from '@/components/styles/colors';
+import { accent_color } from '@/components/styles/colors';
 
 export const Container = styled('div')`
   width: 100%;
@@ -21,7 +21,7 @@ export const CenterTitle = styled('div')`
 export const Title = styled('span')`
   font-size: 22px;
   font-weight: bold;
-  color: ${text_color}
+  color: ${accent_color}
 `;
 
 export const LeftIcon = styled('div')`

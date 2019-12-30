@@ -2,18 +2,18 @@ import * as typeActions from './typeActions';
 
 const mutations = {
   [typeActions.USER_REQUEST](state) {
-    state.usersLoad = true;
-    state.usersError = false;
+    state.userLoad = true;
+    state.userError = false;
   },
   [typeActions.USER_SUCCESS](state, payload) {
-    state.users = payload;
-    state.usersLoad = false;
-    state.usersError = false;
+    state.user = payload;
+    state.userLoad = false;
+    state.userError = false;
   },
   [typeActions.USER_ERROR](state) {
-    state.users = null;
-    state.usersLoad = false;
-    state.usersError = true;
+    state.user = null;
+    state.userLoad = false;
+    state.userError = true;
   }
 }
 

@@ -1,12 +1,12 @@
 const getters = {
-  usersLoad(state) {
-    return state.usersLoad;
+  userLoad(state) {
+    return state.userLoad;
   },
-  usersError(state) {
-    return state.usersError;
+  userError(state) {
+    return state.userError;
   },
-  getUsers(state) {
-    return state.users;
+  getUser(state) {
+    return state.user;
   },
 }
 
