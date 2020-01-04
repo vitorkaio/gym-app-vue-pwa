@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation v-model="bottomNav" :color="accent_color" grow>
+  <v-bottom-navigation v-model="bottomNav" :color="accent_color" shift grow>
     <v-btn value="training">
       <span>Treinos</span>
       <v-icon>mdi-format-list-bulleted-square</v-icon>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:3333';
+const URL = 'http://192.168.1.112:3333';
 
 export const getUser = async (id) => {
   try {

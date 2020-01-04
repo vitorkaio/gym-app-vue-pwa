@@ -1,5 +1,5 @@
 import styled from 'vue-styled-components';
-import { accent_color } from '@/components/styles/colors';
+import { accent_color, default_color } from '@/components/styles/colors';
 
 export const Container = styled('div')`
   width: 100%;
@@ -9,6 +9,8 @@ export const Container = styled('div')`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  background-color: ${default_color};
 `;
 
 export const CenterTitle = styled('div')`

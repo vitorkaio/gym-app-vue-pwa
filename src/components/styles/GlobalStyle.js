@@ -15,7 +15,7 @@ export default injectGlobal`
   }
   body {
     font: 14px 'Roboto', sans-serif;
-    background-color: red;
+    background-color: blue;
     -webkit-font-smoonthing: antialiased !important;
   }
   ul {

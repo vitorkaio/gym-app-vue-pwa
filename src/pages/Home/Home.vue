@@ -2,7 +2,12 @@
   <Container>
     <Header :title="headerTitle"></Header>
     <Content>
-      <h3>Trainings</h3>
+      <template v-if="screen === 'training'">
+        <ListTrainings :trainings="user && user.trainings" :load="userLoad" :error="userError" />
+      </template>
+      <template v-else-if="screen === 'person'">
+        <h3>person</h3>
+      </template>
     </Content>
     <Footer>
       <Tabs :screen="changeScreen" :default="screen"/>
@@ -14,11 +19,11 @@
 /* eslint-disable no-console */
 
 import { Container, Content, Footer } from './HomeStyle';
-import { accent_color } from '@/components/styles/colors';
 import { mapActions, mapGetters } from 'vuex';
 import * as typeActions from '@/store/modules/gym/typeActions';
 import Tabs from '@/components/Tabs/Tabs';
 import Header from '@/components/Header/Header';
+import ListTrainings from '@/components/List/ListTrainings/ListTrainings';
 
 export default {
   components: {
@@ -26,7 +31,8 @@ export default {
     Content,
     Footer,
     Tabs,
-    Header
+    Header,
+    ListTrainings
   },
   data() {
     return {
@@ -39,9 +45,6 @@ export default {
       userError: 'userError',
       user: 'getUser'
     }),
-    accent_color() {
-      return accent_color;
-    },
     headerTitle() {
       return this.screen === 'training' ? 'Treinos' : 'Dados Pessoais'
     }

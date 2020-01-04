@@ -4,15 +4,15 @@ module.exports = {
   ],
   pwa: {
     name: 'My App',
-    themeColor: '#303030',
+    themeColor: '#424242',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: 'black',
+    appleMobileWebAppStatusBarStyle: '#424242',
     
     // configure the manifest options
     manifestOptions: {
       display: 'landscape',
-      background_color: '#42B883'
+      background_color: '#424242'
       // ...other Manifest options...
     },
 
