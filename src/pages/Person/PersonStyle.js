@@ -38,7 +38,7 @@ export const ItemInfoTitle = styled('span')`
 `;
 
 export const ItemInfoText = styled('span')`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
   
   margin-left: 0.7rem;

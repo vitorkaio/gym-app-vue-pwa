@@ -10,7 +10,7 @@
       </ItemInfo>
        <ItemInfo>
         <ItemInfoTitle>Senha </ItemInfoTitle>
-        <v-btn text color="info"> Mudar Senha</v-btn>
+        <v-btn text color="info" @click="toggleShowEditData">Mudar Senha</v-btn>
       </ItemInfo>
        <ItemInfo>
         <ItemInfoTitle>Nome </ItemInfoTitle>
@@ -18,12 +18,15 @@
       </ItemInfo>
       <v-btn style="margin-top: 1rem; width: 100px" x-small  color="error">Sair</v-btn>
     </InfoContent>
+    
+    <EditData :dialogEditData="dialogEditData" :toggleShowEditData="toggleShowEditData" />
   </Container>
 </template>
 
 <script>
 import { Container, ImgContent, InfoContent, ItemInfo, ItemInfoTitle, ItemInfoText } from './PersonStyle';
-import personal_file_img from '@/assets/personal_file.svg';
+import personal_file_img from '@/assets/personal_data.svg';
+import EditData from '@/pages/EditData/EditData';
 
 export default {
   props: {
@@ -35,12 +38,19 @@ export default {
     InfoContent,
     ItemInfo,
     ItemInfoTitle,
-    ItemInfoText
+    ItemInfoText,
+    EditData
   },
   data() {
     return {
-      personalImg: personal_file_img
+      personalImg: personal_file_img,
+      dialogEditData: false
     }
+  },
+  methods: {
+    toggleShowEditData() {
+      this.dialogEditData = !this.dialogEditData;
+    },
   }
 }
 </script>
