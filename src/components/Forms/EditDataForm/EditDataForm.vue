@@ -2,33 +2,35 @@
   <Container>
     <InputForms id="app" @submit="onSubmit">
       <InputItem>
-        <v-text-field
+        <v-text-field v-model="oldPassword"
           outlined
           style="width: 100%"
           label="Senha Atual"
           type="password"
           prepend-inner-icon="mdi-lock-outline"
-          :rules="[rules.required, rules.min]"
+          :rules="[oldPasswordRules.required, oldPasswordRules.min]"
         ></v-text-field>
       </InputItem>
       
-     <InputItem>
-        <v-text-field
+      <InputItem>
+        <v-text-field v-model="newPassword"
           outlined
           style="width: 100%"
-          label="Senha Atual"
+          label="Nova Senha"
           type="password"
-          prepend-inner-icon="mdi-lock-outline"
+          prepend-inner-icon="mdi-lock-question"
+          :rules="[newPasswordRules.required, newPasswordRules.min]"
         ></v-text-field>
       </InputItem>
 
- <InputItem>
-        <v-text-field
+      <InputItem>
+        <v-text-field v-model="confirmPassword"
           outlined
           style="width: 100%"
-          label="Senha Atual"
+          label="Confirmar a nova senha"
           type="password"
-          prepend-inner-icon="mdi-lock-outline"
+          prepend-inner-icon="mdi-lock-alert"
+          :rules="[confirmPasswordRules().required, confirmPasswordRules().min, confirmPasswordRules(newPassword).verify]"
         ></v-text-field>
       </InputItem>
 
@@ -38,7 +40,7 @@
       >
     </InputForms>
     <ActionsForms>
-      <v-btn text color="error" @click="cancel">Cancelar</v-btn>
+      <v-btn text color="error" @click="onCancel">Cancelar</v-btn>
       <v-btn text color="success" @click="onSubmit">Ok</v-btn>
     </ActionsForms>
   </Container>
@@ -46,9 +48,9 @@
 
 <script>
 import { Container, InputForms, ActionsForms, InputItem } from './EditDataFormStyle';
+import Validators from './Validators';
 
 export default {
-
   props: {
     submit: Function,
     cancel: Function
@@ -62,16 +64,21 @@ export default {
   },
   data() {
     return {
-      rules: {
-        required: value => !!value || 'Required.',
-        min: v => v.length >= 4 || 'Min 4 carácteres',
-      },
+      oldPasswordRules: Validators.oldPasswordRules(),
+      newPasswordRules: Validators.newPasswordRules(),
+      confirmPasswordRules: Validators.confirmPasswordRules,
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: ''
     }
   },
   methods: {
     onSubmit(e) {
       this.submit();
       e.preventDefault();
+    },
+    onCancel() {
+      this.cancel();
     }
   }
 }

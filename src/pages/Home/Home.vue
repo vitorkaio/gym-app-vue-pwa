@@ -67,6 +67,15 @@ export default {
       this.error = err
     }
   },
+  beforeRouteEnter(to, from, next) {
+    const password = true;
+    console.log('BEFORE');
+    if (password) next();
+    else next('/login');
+  },
+  beforeRouteLeave(to, from, next) {
+    next(false);
+  }
 }
 </script>
 
