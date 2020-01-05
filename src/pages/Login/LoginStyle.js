@@ -10,7 +10,7 @@ export const Container = styled('div')`
 
 
 export const ImgContent = styled('div')`
-  flex: 2;
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: center;

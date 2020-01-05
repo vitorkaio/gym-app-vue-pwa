@@ -23,7 +23,6 @@ export const InputItem = styled('div')`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const ActionsForms = styled('div')`
