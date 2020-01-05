@@ -9,7 +9,7 @@ class TrainingServices {
 
   // Retorna o treino salvo, que está no topo
   static getTraining() {
-    return localStorage.getItem('training_id');
+    return localStorage.getItem('training_id')
   }
 
   // Coloca o item no topo da pilha que tenha o mesmo id que foi passado...

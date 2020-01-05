@@ -33,6 +33,7 @@ export const ListContent = styled('div')`
 `;
 
 export const ItemContent = styled('div')`
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

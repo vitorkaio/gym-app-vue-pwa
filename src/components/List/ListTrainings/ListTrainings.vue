@@ -21,7 +21,7 @@
           </v-list-item-content>
 
           <v-list-item-icon>
-            <v-icon :color=" index !== 0 ? 'warning' : 'info'">{{ index !== 0 ? 'mdi-clock-outline' : 'mdi-check'}}</v-icon>
+            <v-icon :color=" index !== 0 ? 'warning' : 'success'">{{ index !== 0 ? 'mdi-clock-outline' : 'mdi-check'}}</v-icon>
           </v-list-item-icon>
         </v-list-item>
       </v-list>

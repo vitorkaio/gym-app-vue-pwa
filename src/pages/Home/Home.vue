@@ -6,7 +6,7 @@
         <ListTrainings :trainings="user && user.trainings" :load="userLoad" :error="userError" />
       </template>
       <template v-else-if="screen === 'person'">
-        <h3>person</h3>
+        <Person :user="user" />
       </template>
     </Content>
     <Footer>
@@ -24,6 +24,7 @@ import * as typeActions from '@/store/modules/gym/typeActions';
 import Tabs from '@/components/Tabs/Tabs';
 import Header from '@/components/Header/Header';
 import ListTrainings from '@/components/List/ListTrainings/ListTrainings';
+import Person from '@/pages/Person/Person';
 
 export default {
   components: {
@@ -32,7 +33,8 @@ export default {
     Footer,
     Tabs,
     Header,
-    ListTrainings
+    ListTrainings,
+    Person
   },
   data() {
     return {
@@ -56,7 +58,6 @@ export default {
     },
     changeScreen(screen) {
       this.screen = screen;
-      console.log(screen);
     }
   },
   async created() {
