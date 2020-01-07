@@ -36,6 +36,9 @@
 import { Container, Content, Footer, InputItem } from './LoginFormStyle';
 
 export default {
+  props: {
+    submit: Function
+  },
   components: {
     Container,
     Content,
@@ -53,8 +56,7 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      // eslint-disable-next-line no-console
-      console.log(this.username, this.password);
+      this.submit(this.username, this.password);
       e.preventDefault();
     }
   }
