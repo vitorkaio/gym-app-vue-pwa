@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Crypt from '../Crypt';
 
 const URL = 'http://192.168.1.112:3333';
 
@@ -21,11 +22,12 @@ export const login = async ({ username, password }) => {
   try {
     const id = await axios.post(`${URL}/auth/login`, { username, password })
     if (id.data.code === 200) {
-      return {
+      const data = {
         id: id.data.data,
         username,
         password
       }
+      return Crypt.cryptData(data);
     }
     else {
       throw new Error(null)

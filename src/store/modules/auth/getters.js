@@ -1,3 +1,5 @@
+import Crypt from '@/services/Crypt';
+
 const getters = {
   loginLoad(state) {
     return state.loginLoad;
@@ -6,7 +8,7 @@ const getters = {
     return state.loginError;
   },
   getUserLogged(state) {
-    return state.userLogged;
+    return Crypt.decryptData(state.userLogged);
   },
 }
 

@@ -50,6 +50,18 @@ export default {
     },
     actionInfoDialog() {
       this.LOGIN_RESET();
+    },
+  },
+  watch: {
+    userLogged() {
+      if (this.userLogged) {
+        this.$router.push('/');
+      }
+    }
+  },
+  async created() {
+    if (this.userLogged) {
+      this.$router.push('/');
     }
   }
 }

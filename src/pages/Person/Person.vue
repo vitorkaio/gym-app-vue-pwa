@@ -16,7 +16,7 @@
         <ItemInfoTitle>Nome </ItemInfoTitle>
         <ItemInfoText>{{ user.info.name }}</ItemInfoText>
       </ItemInfo>
-      <v-btn style="margin-top: 1rem; width: 100px" x-small  color="error">Sair</v-btn>
+      <v-btn style="margin-top: 1rem; width: 100px" x-small color="error" @click="logout">Sair</v-btn>
     </InfoContent>
     
     <EditData :dialogEditData="dialogEditData" :toggleShowEditData="toggleShowEditData" />
@@ -27,6 +27,8 @@
 import { Container, ImgContent, InfoContent, ItemInfo, ItemInfoTitle, ItemInfoText } from './PersonStyle';
 import personal_file_img from '@/assets/personal_data.svg';
 import EditData from '@/pages/EditData/EditData';
+import { mapActions } from 'vuex';
+import * as typeActions from '@/store/modules/auth/typeActions';
 
 export default {
   props: {
@@ -48,9 +50,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', [typeActions.LOGIN_RESET]),
     toggleShowEditData() {
       this.dialogEditData = !this.dialogEditData;
     },
+    logout() {
+      this.LOGIN_RESET();
+      this.$router.push('/login');
+    }
   }
 }
 </script>

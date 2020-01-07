@@ -22,6 +22,10 @@ const actions = {
       context.commit(typeActions.USER_ERROR);
     }
   },
+
+  async [typeActions.USER_ERROR](context) {
+    context.commit(typeActions.USER_ERROR);
+  }
   
 }
 

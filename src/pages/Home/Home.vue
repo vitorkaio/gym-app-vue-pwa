@@ -47,14 +47,23 @@ export default {
       userError: 'userError',
       user: 'getUser'
     }),
+    ...mapGetters('auth',{
+      userLogged: 'getUserLogged',
+    }),
     headerTitle() {
       return this.screen === 'training' ? 'Treinos' : 'Dados Pessoais'
     }
   },
   methods: {
-    ...mapActions('gym', [typeActions.USER_REQUEST]),
+    ...mapActions('gym', [typeActions.USER_REQUEST, typeActions.USER_ERROR]),
     getUser() {
-      this.USER_REQUEST('5e07e08fcb49f0481ab0ce45');
+      if (this.userLogged) {
+        this.USER_REQUEST(this.userLogged.id);
+      }
+      else {
+        this.USER_ERROR();
+        this.$router.push('/login');
+      }
     },
     changeScreen(screen) {
       this.screen = screen;
@@ -62,20 +71,11 @@ export default {
   },
   async created() {
     try {
-     this.getUser();
+      this.getUser();
     } catch (err) {
-      this.error = err
+      this.error - err;
     }
   },
-  beforeRouteEnter(to, from, next) {
-    const password = true;
-    console.log('BEFORE');
-    if (password) next();
-    else next('/login');
-  },
-  beforeRouteLeave(to, from, next) {
-    next(false);
-  }
 }
 </script>
 
