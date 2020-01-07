@@ -27,7 +27,7 @@
       </v-list>
       <ConfirmDialog :dialog='dialog' 
         :actionConfirmDialog="actionEditTrainings" 
-        text="Tem certeza que quer Finalizar o treino?"
+        text="Deseja finalizar o treino?"
       />
       <Exercises :dialogExercises="dialogExercises" 
         :training="training"

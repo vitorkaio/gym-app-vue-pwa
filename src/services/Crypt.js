@@ -1,16 +1,20 @@
 /* eslint-disable no-console */
-import { encode, decode } from 'jwt-simple';
+import CryptoJS from 'crypto-js';
 
 const secret = 'fe1a1915a379f3be5394b64d14794932';
 
 class Crypt {
 
   static cryptData(data) {
-    return encode(data, secret);
+    return CryptoJS.AES.encrypt(JSON.stringify(data), secret).toString();
   }
 
   static decryptData(token) {
-    return token ? decode(token, secret) : token;
+    if (token) {
+      const bytes = CryptoJS.AES.decrypt(token.toString(), secret);
+      return JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+    }
+    return token;
   }
 
 }

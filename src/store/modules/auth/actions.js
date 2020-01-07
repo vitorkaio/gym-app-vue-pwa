@@ -18,6 +18,7 @@ const actions = {
         context.commit(typeActions.LOGIN_ERROR);
       }
     } catch (error) {
+      console.log(error)
       context.commit(typeActions.LOGIN_ERROR);
     }
   },
