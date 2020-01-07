@@ -21,6 +21,10 @@ const actions = {
       context.commit(typeActions.LOGIN_ERROR);
     }
   },
+
+  async [typeActions.LOGIN_RESET](context) {
+    context.commit(typeActions.LOGIN_RESET)
+  }
   
 }
 

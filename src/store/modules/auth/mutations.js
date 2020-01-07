@@ -15,6 +15,11 @@ const mutations = {
     state.userLogged = null;
     state.loginLoad = false;
     state.loginError = true;
+  },
+  [typeActions.LOGIN_RESET](state) {
+    state.userLogged = null;
+    state.loginLoad = false;
+    state.loginError = false;
   }
 }
 

@@ -6,7 +6,9 @@
     <Content>
       <LoginForm :submit="login" />
     </Content>
-    <Loading :loading="loginLoad" title="Login" />
+    <Loading :loading="loginLoad" title="Entrando" />
+    <Info :infoDialog="loginError" :actionInfoDialog="actionInfoDialog"
+     title="Error" text="Login/Senha inválido" />
   </Container>
 </template>
 
@@ -17,6 +19,7 @@ import LoginForm from '@/components/Forms/LoginForm/LoginForm';
 import { mapActions, mapGetters } from 'vuex';
 import * as typeActions from '@/store/modules/auth/typeActions';
 import Loading from '@/components/Dialogs/Loading/Loading';
+import Info from '@/components/Dialogs/Info/Info';
 
 export default {
   components: {
@@ -24,11 +27,12 @@ export default {
     ImgContent,
     Content,
     LoginForm,
-    Loading
+    Loading,
+    Info
   },
   data() {
     return {
-      loginImg: loginImg
+      loginImg: loginImg,
     }
   },
   computed: {
@@ -39,11 +43,14 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('auth', [typeActions.LOGIN_REQUEST]),
+    ...mapActions('auth', [typeActions.LOGIN_REQUEST, typeActions.LOGIN_RESET]),
     login(username, password) {
       this.LOGIN_REQUEST({ username, password });
       // this.$router.push('/');
     },
+    actionInfoDialog() {
+      this.LOGIN_RESET();
+    }
   }
 }
 </script>
