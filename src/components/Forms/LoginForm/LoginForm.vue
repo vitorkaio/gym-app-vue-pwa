@@ -56,7 +56,9 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      this.submit(this.username, this.password);
+      if (this.username.length !== 0 && this.password.length !== 0) {
+        this.submit(this.username.trim(), this.password.trim());
+      }
       e.preventDefault();
     }
   }

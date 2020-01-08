@@ -5,7 +5,7 @@
     persistent
   >
     <v-card>
-      <v-card-title class="headline">Confirmar</v-card-title>
+      <v-card-title class="headline">{{ title }}</v-card-title>
 
       <v-card-text>
         {{ text }}
@@ -39,7 +39,8 @@ export default {
   props: {
     dialog: Boolean,
     actionConfirmDialog: Function,
-    text: String
+    text: String,
+    title: String
   }
 }
 </script>

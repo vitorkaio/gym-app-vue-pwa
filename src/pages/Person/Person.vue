@@ -16,19 +16,37 @@
         <ItemInfoTitle>Nome </ItemInfoTitle>
         <ItemInfoText>{{ user.info.name }}</ItemInfoText>
       </ItemInfo>
-      <v-btn style="margin-top: 1rem; width: 100px" x-small color="error" @click="logout">Sair</v-btn>
     </InfoContent>
-    
-    <EditData :dialogEditData="dialogEditData" :toggleShowEditData="toggleShowEditData" />
+    <LogoutButton>
+      <v-btn 
+        style="margin-top: 1rem; width: 100px" 
+        color="error" 
+        text 
+        @click="isLogout"
+      >
+        Sair
+      </v-btn>
+    </LogoutButton>
+    <ConfirmDialog 
+      :dialog="confirmDialog" 
+      title="Logout" 
+      text="Tem certeza que deseja sair?" 
+      :actionConfirmDialog="logout" 
+    />
+    <EditData 
+      :dialogEditData="dialogEditData" 
+      :toggleShowEditData="toggleShowEditData" 
+    />
   </Container>
 </template>
 
 <script>
-import { Container, ImgContent, InfoContent, ItemInfo, ItemInfoTitle, ItemInfoText } from './PersonStyle';
+import { Container, ImgContent, InfoContent, ItemInfo, ItemInfoTitle, ItemInfoText, LogoutButton } from './PersonStyle';
 import personal_file_img from '@/assets/personal_data.svg';
 import EditData from '@/pages/EditData/EditData';
 import { mapActions } from 'vuex';
 import * as typeActions from '@/store/modules/auth/typeActions';
+import ConfirmDialog from '@/components/Dialogs/Confirm/ConfirmDialog';
 
 export default {
   props: {
@@ -41,12 +59,15 @@ export default {
     ItemInfo,
     ItemInfoTitle,
     ItemInfoText,
-    EditData
+    EditData,
+    LogoutButton,
+    ConfirmDialog
   },
   data() {
     return {
       personalImg: personal_file_img,
-      dialogEditData: false
+      dialogEditData: false,
+      confirmDialog: false
     }
   },
   methods: {
@@ -54,9 +75,15 @@ export default {
     toggleShowEditData() {
       this.dialogEditData = !this.dialogEditData;
     },
-    logout() {
-      this.LOGIN_RESET();
-      this.$router.push('/login');
+    isLogout() {
+      this.confirmDialog = true;
+    },
+    logout(op) {
+      this.confirmDialog = false;
+      if (op) {
+        this.LOGIN_RESET();
+        this.$router.push('/login');
+      }
     }
   }
 }

@@ -25,9 +25,11 @@
           </v-list-item-icon>
         </v-list-item>
       </v-list>
-      <ConfirmDialog :dialog='dialog' 
+      <ConfirmDialog 
+        :dialog='dialog' 
         :actionConfirmDialog="actionEditTrainings" 
         text="Deseja finalizar o treino?"
+        title="Finalizar"
       />
       <Exercises :dialogExercises="dialogExercises" 
         :training="training"
@@ -53,7 +55,6 @@ export default {
   props: {
     trainings: Array,
     load: Boolean,
-    error: Boolean
   },
   components: {
     Container,

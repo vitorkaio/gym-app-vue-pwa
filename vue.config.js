@@ -3,7 +3,7 @@ module.exports = {
     "vuetify"
   ],
   pwa: {
-    name: 'My App',
+    name: 'Gym App - Minha Ficha',
     themeColor: '#424242',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
@@ -12,6 +12,7 @@ module.exports = {
     // configure the manifest options
     manifestOptions: {
       display: 'standalone',
+      orientation: "portrait-primary",
       background_color: '#424242'
       // ...other Manifest options...
     },

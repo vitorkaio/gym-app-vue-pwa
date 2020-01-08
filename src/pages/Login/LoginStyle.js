@@ -10,13 +10,13 @@ export const Container = styled('div')`
 
 
 export const ImgContent = styled('div')`
-  flex: 3;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Content = styled('div')`
-  flex: 2;
+  flex: 1;
   display: flex;
 `;

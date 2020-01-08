@@ -12,6 +12,7 @@ export const ImgContent = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 1.5rem;
   /* padding: 0.5rem; */
 `;
 
@@ -20,7 +21,9 @@ export const InfoContent = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
   padding-left: 3rem;
+  margin-top: 5rem;
 `;
 
 export const ItemInfo = styled('div')`
@@ -43,4 +46,10 @@ export const ItemInfoText = styled('span')`
   
   margin-left: 0.7rem;
 
+`;
+
+export const LogoutButton = styled('div')`
+  flex: 1;
+  display: flex;
+  justify-content: center;
 `;

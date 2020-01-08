@@ -3,7 +3,7 @@
     <Header :title="headerTitle"></Header>
     <Content>
       <template v-if="screen === 'training'">
-        <ListTrainings :trainings="user && user.trainings" :load="userLoad" :error="userError" />
+        <ListTrainings :trainings="user && user.trainings" :load="userLoad" />
       </template>
       <template v-else-if="screen === 'person'">
         <Person :user="user" />
@@ -12,6 +12,12 @@
     <Footer>
       <Tabs :screen="changeScreen" :default="screen"/>
     </Footer>
+    <InfoDialog 
+      title="Erro"
+      text="Não foi possível acessar os treinos!"
+      :infoDialog="userError"
+      :actionInfoDialog="getUser"
+    />
   </Container>
 </template>
 
@@ -25,6 +31,7 @@ import Tabs from '@/components/Tabs/Tabs';
 import Header from '@/components/Header/Header';
 import ListTrainings from '@/components/List/ListTrainings/ListTrainings';
 import Person from '@/pages/Person/Person';
+import InfoDialog from '@/components/Dialogs/Info/Info';
 
 export default {
   components: {
@@ -34,7 +41,8 @@ export default {
     Tabs,
     Header,
     ListTrainings,
-    Person
+    Person,
+    InfoDialog
   },
   data() {
     return {
@@ -73,7 +81,7 @@ export default {
     try {
       this.getUser();
     } catch (err) {
-      this.error - err;
+      this.error = err;
     }
   },
 }
