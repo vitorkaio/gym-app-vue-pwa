@@ -11,7 +11,6 @@ const actions = {
       // Acessa o store.
       // console.log(context.state.load);
       const user = await ApiGym.getUser(payload);
-      console.log(user);
       if(user) {
         context.commit(typeActions.USER_SUCCESS, user);
       }
