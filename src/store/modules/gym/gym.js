@@ -8,6 +8,10 @@ const gym = {
     user: null,
     userLoad: false,
     userError: false,
+
+    editPasswordSuccess: false,
+    editPasswordUserLoading: false,
+    editPasswordUserError: false
   },
   getters: getters,
   mutations: mutations,

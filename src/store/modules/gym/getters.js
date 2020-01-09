@@ -8,6 +8,19 @@ const getters = {
   getUser(state) {
     return state.user;
   },
+
+  
+  editPasswordSuccess(state) {
+    return state.editPasswordSuccess;
+  },
+
+  editPasswordUserLoading(state) {
+    return state.editPasswordUserLoading;
+  },
+  editPasswordUserError(state) {
+    return state.editPasswordUserError;
+  }
+
 }
 
 export default getters;

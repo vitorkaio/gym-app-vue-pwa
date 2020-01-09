@@ -30,7 +30,22 @@ export const login = async ({ username, password }) => {
       return Crypt.cryptData(data);
     }
     else {
-      throw new Error(null)
+      throw new Error(null);
+    }
+  } catch (error) {
+    throw (error)
+  }
+}
+
+// Edita a senha do usuário.
+export const editPassword = async (id, password) => {
+  try {
+    const res = await axios.patch(`${URL}/users/${id}`, { password });
+    if (res.data.code === 200) {
+      return true;
+    }
+    else {
+      throw (false);
     }
   } catch (error) {
     throw (error)

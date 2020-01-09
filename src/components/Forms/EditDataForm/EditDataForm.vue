@@ -73,12 +73,26 @@ export default {
     }
   },
   methods: {
+    resetFields() {
+      this.oldPassword = '',
+      this.newPassword = '',
+      this.confirmPassword = ''
+    },
     onSubmit(e) {
-      this.submit();
+      if (this.oldPassword.length !== 0 && this.newPassword.length !== 0 && this.confirmPassword.length !== 0) {
+        const changePassword = {
+          oldPassword: this.oldPassword,
+          newPassword: this.newPassword,
+          confirmPassword: this.confirmPassword
+        }
+        // this.resetFields();
+        this.submit(changePassword);
+      }
       e.preventDefault();
     },
     onCancel() {
-      this.cancel();
+      this.resetFields();
+      this.cancel(false);
     }
   }
 }

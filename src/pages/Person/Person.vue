@@ -10,7 +10,7 @@
       </ItemInfo>
        <ItemInfo>
         <ItemInfoTitle>Senha </ItemInfoTitle>
-        <v-btn text color="info" @click="toggleShowEditData">Mudar Senha</v-btn>
+        <v-btn text color="info" @click="toggleShowEditData(false)">Mudar Senha</v-btn>
       </ItemInfo>
        <ItemInfo>
         <ItemInfoTitle>Nome </ItemInfoTitle>
@@ -35,7 +35,11 @@
     />
     <EditData 
       :dialogEditData="dialogEditData" 
-      :toggleShowEditData="toggleShowEditData" 
+      :toggleShowEditData="toggleShowEditData"
+      :currentPassword="userLogged.password" 
+      :editPasswordUserLoading="editPasswordUserLoading"
+      :editPasswordUserError="editPasswordUserError"
+      :editPasswordAction="editPasswordAction"
     />
   </Container>
 </template>
@@ -44,8 +48,9 @@
 import { Container, ImgContent, InfoContent, ItemInfo, ItemInfoTitle, ItemInfoText, LogoutButton } from './PersonStyle';
 import personal_file_img from '@/assets/personal_data.svg';
 import EditData from '@/pages/EditData/EditData';
-import { mapActions } from 'vuex';
-import * as typeActions from '@/store/modules/auth/typeActions';
+import { mapActions, mapGetters } from 'vuex';
+import * as typeActionsUser from '@/store/modules/gym/typeActions';
+import * as typeActionsAuth from '@/store/modules/auth/typeActions';
 import ConfirmDialog from '@/components/Dialogs/Confirm/ConfirmDialog';
 
 export default {
@@ -70,19 +75,49 @@ export default {
       confirmDialog: false
     }
   },
+  computed: {
+    ...mapGetters('auth',{
+      userLogged: 'getUserLogged',
+    }),
+    ...mapGetters('gym', {
+      editPasswordSuccess: 'editPasswordSuccess',
+      editPasswordUserLoading: 'editPasswordUserLoading',
+      editPasswordUserError: 'editPasswordUserError'
+    })
+  },
   methods: {
-    ...mapActions('auth', [typeActions.LOGIN_RESET]),
+    ...mapActions('gym', [typeActionsUser.EDIT_PASSWORD_USER_REQUEST, typeActionsUser.EDIT_PASSWORD_USER_RESET]),
+    ...mapActions('auth', [typeActionsAuth.LOGIN_RESET]),
     toggleShowEditData() {
       this.dialogEditData = !this.dialogEditData;
     },
+    editPasswordAction(op, password) {
+      if (op) {
+        if (password.length !== 0) {
+          const { id } = this.userLogged;
+          this.EDIT_PASSWORD_USER_REQUEST({ id, password });
+        }
+      }
+      else {
+        this.EDIT_PASSWORD_USER_RESET();
+      }
+    },
     isLogout() {
-      this.confirmDialog = true;
+      this.confirmDialog = !this.confirmDialog;
     },
     logout(op) {
-      this.confirmDialog = false;
+      this.isLogout();
       if (op) {
         this.LOGIN_RESET();
         this.$router.push('/login');
+      }
+    }
+  },
+  watch: {
+    editPasswordSuccess() {
+      if (this.editPasswordSuccess) {
+        this.EDIT_PASSWORD_USER_RESET();
+        this.logout(true);
       }
     }
   }

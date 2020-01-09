@@ -24,6 +24,26 @@ const actions = {
 
   async [typeActions.USER_ERROR](context) {
     context.commit(typeActions.USER_ERROR);
+  },
+
+  async [typeActions.EDIT_PASSWORD_USER_REQUEST](context, payload) {
+    try {
+      context.commit(typeActions.EDIT_PASSWORD_USER_REQUEST);
+      const { id, password } = payload;
+      const res = await ApiGym.editPassword(id, password);
+      if (res) {
+        context.commit(typeActions.EDIT_PASSWORD_USER_SUCCESS);
+      }
+      else {
+        context.commit(typeActions.EDIT_PASSWORD_USER_ERROR);
+      }
+    } catch (error) {
+      context.commit(typeActions.EDIT_PASSWORD_USER_ERROR);
+    }
+  },
+
+  async [typeActions.EDIT_PASSWORD_USER_RESET](context) {
+    context.commit(typeActions.EDIT_PASSWORD_USER_RESET);
   }
   
 }
