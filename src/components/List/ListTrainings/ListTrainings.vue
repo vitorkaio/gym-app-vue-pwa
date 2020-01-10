@@ -83,7 +83,7 @@ export default {
     },
     accent_color() {
       return accent_color;
-    }
+    },
   },
   methods: {
     trainingDone() {
@@ -94,10 +94,7 @@ export default {
         const newTrainings = [...this.dataTranings];
         const tr = newTrainings.shift();
         TrainingServices.saveTraining(newTrainings[0]._id);
-        setTimeout(() => {
-            newTrainings.push(tr);
-            this.dataTranings = [...newTrainings];
-        }, 1e3);
+        newTrainings.push(tr);
         this.dataTranings = [...newTrainings];
         this.dialog = false;
       }
@@ -113,16 +110,17 @@ export default {
       this.dialogExercises = false;
     }
   },
-  updated() {
-    if (!this.dataTranings) {
+  created() {
       const id = TrainingServices.getTraining();
+      console.log('id save: ', id)
       if (id) {
-        this.dataTranings = TrainingServices.orderList(id, [...this.trainings]);
+        this.dataTranings = TrainingServices.orderList(id, [...this.dataTranings]);
       }
       else {
         this.dataTranings = this.trainings;
       }
-    }
+      console.log('top list: ', this.dataTranings[0]._id)
+      return this.dataTranings;
   }
 }
 </script>

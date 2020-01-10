@@ -2,8 +2,8 @@
   <Container>
     <Header :title="headerTitle"></Header>
     <Content>
-      <template v-if="screen === 'training'">
-        <ListTrainings :trainings="user && user.trainings" :load="userLoad" />
+      <template v-if="screen === 'training' && user !== null">
+        <ListTrainings :trainings="user.trainings" :load="userLoad" />
       </template>
       <template v-else-if="screen === 'person'">
         <Person :user="user" />
