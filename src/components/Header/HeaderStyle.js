@@ -14,7 +14,7 @@ export const Container = styled('div')`
 `;
 
 export const CenterTitle = styled('div')`
-  flex: 2;
+  flex: 5;
   display: flex;
   justify-content: center;
   align-content: center;

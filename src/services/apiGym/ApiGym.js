@@ -1,7 +1,8 @@
 import axios from 'axios';
 import Crypt from '../Crypt';
 
-const URL = 'http://192.168.1.112:3333';
+// const URL = 'http://192.168.1.112:3333';
+const URL = 'https://mysterious-peak-93181.herokuapp.com';
 
 export const getUser = async (id) => {
   try {

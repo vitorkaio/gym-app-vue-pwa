@@ -5,25 +5,28 @@
     </template>
     <ListWrapper v-else>
       <v-list>
-        <v-list-item v-for="(training, index) in dataTranings"
-          :key="training._id" 
-          v-long-press="400" 
-          @long-press-start="index !== 0 ? null : trainingDone()"
-          @click="showListExercises(training)"
-        >
-          <v-list-item-avatar>
-            <v-img :src="user_img"></v-img>
-          </v-list-item-avatar>
+          <transition-group name="list">
+            <v-list-item v-for="(training, index) in dataTranings"
+              :key="training._id" 
+              v-long-press="400" 
+              @long-press-start="index !== 0 ? null : trainingDone()"
+              @click="showListExercises(training)"
+            >
+            <v-list-item-avatar>
+              <v-img :src="user_img"></v-img>
+            </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title v-text="training.name"></v-list-item-title>
-            <v-list-item-subtitle v-text="training.exercises.length + ' exercícios'"></v-list-item-subtitle>
-          </v-list-item-content>
+            <v-list-item-content>
+              <v-list-item-title v-text="training.name"></v-list-item-title>
+              <v-list-item-subtitle v-text="training.exercises.length + ' exercícios'"></v-list-item-subtitle>
+            </v-list-item-content>
 
-          <v-list-item-icon>
-            <v-icon :color=" index !== 0 ? 'warning' : 'success'">{{ index !== 0 ? 'mdi-clock-outline' : 'mdi-check'}}</v-icon>
-          </v-list-item-icon>
-        </v-list-item>
+
+            <v-list-item-icon>
+              <v-icon :color=" index !== 0 ? 'warning' : 'success'">{{ index !== 0 ? 'mdi-clock-outline' : 'mdi-check'}}</v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </transition-group>
       </v-list>
       <ConfirmDialog 
         :dialog='dialog' 
@@ -87,11 +90,14 @@ export default {
       this.dialog = true;
     },
     actionEditTrainings(op) {
-      if (op) {
+      if (op && this.dataTranings.length > 1) {
         const newTrainings = [...this.dataTranings];
         const tr = newTrainings.shift();
-        newTrainings.push(tr);
         TrainingServices.saveTraining(newTrainings[0]._id);
+        setTimeout(() => {
+            newTrainings.push(tr);
+            this.dataTranings = [...newTrainings];
+        }, 1e3);
         this.dataTranings = [...newTrainings];
         this.dialog = false;
       }
@@ -121,6 +127,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .list-enter-active {
+    animation: slideInLeft ease 1s;
+  }
+  .list-leave-active {
+    animation: slideOutRight ease 1s;
+  }
 </style>
