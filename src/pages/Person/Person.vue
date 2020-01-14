@@ -92,8 +92,10 @@ export default {
       this.dialogEditData = !this.dialogEditData;
     },
     editPasswordAction(op, password) {
+      // eslint-disable-next-line no-console
+      console.log(password)
       if (op) {
-        if (password.length !== 0) {
+        if (password && password.length !== 0) {
           const { id } = this.userLogged;
           this.EDIT_PASSWORD_USER_REQUEST({ id, password });
         }
