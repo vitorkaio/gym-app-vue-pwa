@@ -9,15 +9,12 @@
       <Content>
         <ListExercises :exercises="training.exercises" />
       </Content>
-      <Footer>
-        <v-btn text color="primary" @click="closeModalExercises">Voltar</v-btn>
-      </Footer>
     </Container>
   </v-dialog>
 </template>
 
 <script>
-import { Container, Content, Footer } from './ExercisesStyle';
+import { Container, Content } from './ExercisesStyle';
 import Header from '@/components/Header/Header';
 import { accent_color } from '@/components/styles/colors';
 import ListExercises from '@/components/List/ListExercises/ListExercises';
@@ -32,7 +29,6 @@ export default {
     Container,
     Header,
     Content,
-    Footer,
     ListExercises
   },
   data() {
