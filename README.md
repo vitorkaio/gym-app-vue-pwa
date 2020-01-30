@@ -1,5 +1,9 @@
 # App - Ficha Academia
 
+## Link pwa:
+> https://gym-app-pwa-d0a1d.firebaseapp.com/
+#### Obs.: abrir no google chrome - smartphone
+
 ## Tecnologias
 * Vue
 * Vuetify
